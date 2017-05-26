@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <div class="demo" >
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/cupertino/jquery-ui.css">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+
+<p>Please select a date below:</p>
+
+<p>Date: <input type="text" name="lessonDate" id="datepicker" /> </p>
+<script>
+    $( "#datepicker" ).datepicker({
+      showWeek: true,
+      firstDay: 0,
+     });
+</script>
+<script>
+// Pass input dates to server-side submitDates()
+function submitDates() {
+  var lessonDate = $("#datepicker").val();
+
+  google.script.run
+        .withSuccessHandler(
+           // Dates delivered, close dialog
+           function() {
+             google.script.host.close();
+           })
+           // Display failure messages
+         .withFailureHandler(
+           function() {
+             var div = $('<div id="error" class="error">' + msg + '</div>');
+             $(element).after($("#demo"));
+           })
+         .submitDates(lessonDate);
+}
+
+</script>
+<input type="button" value="Select" onclick="submitDates()" />
+</div>
+  </body>
+</html>
+
+

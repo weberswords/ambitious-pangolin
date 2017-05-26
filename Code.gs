@@ -1,11 +1,10 @@
-  //add menu
+
 function onInstall(e) {
   onOpen(e);
 }
 
 function onOpen(e) {
   var ui = DocumentApp.getUi();
-  // Or DocumentApp or FormApp.
   ui.createMenu('TA by IH')
       .addItem('Send to Calendar', 'checkCalForExistingDoc')
       .addToUi();
@@ -35,6 +34,6 @@ function checkCalForExistingDoc() {
 function sendToCal() {
   var info = getDocumentInfo();
   CalendarApp.getDefaultCalendar().createAllDayEvent(info['title'], new Date(), {'description': info['description']});
-  DocumentApp.getUi() // Or DocumentApp or FormApp.
+  DocumentApp.getUi()
      .alert('Sent to calendar!');
 }
